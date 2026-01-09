@@ -1,118 +1,154 @@
-import { createFileRoute } from '@tanstack/react-router'
-import {
-  Zap,
-  Server,
-  Route as RouteIcon,
-  Shield,
-  Waves,
-  Sparkles,
-} from 'lucide-react'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { Monitor, Cpu, Layers, Database, ChevronRight } from 'lucide-react'
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute('/')({ component: HomePage })
 
-function App() {
-  const features = [
+function HomePage() {
+  const stats = [
+    { label: 'GPU Reports', value: '4,530+' },
+    { label: 'Extensions Tracked', value: '350+' },
+    { label: 'Properties', value: '200+' },
+    { label: 'Platforms', value: '5' },
+  ]
+
+  const quickLinks = [
     {
-      icon: <Zap className="w-12 h-12 text-cyan-400" />,
-      title: 'Powerful Server Functions',
-      description:
-        'Write server-side code that seamlessly integrates with your client components. Type-safe, secure, and simple.',
+      icon: <Layers className="w-8 h-8" />,
+      title: 'Extensions',
+      description: 'Browse Vulkan extension coverage across devices',
+      href: '/extensions',
     },
     {
-      icon: <Server className="w-12 h-12 text-cyan-400" />,
-      title: 'Flexible Server Side Rendering',
-      description:
-        'Full-document SSR, streaming, and progressive enhancement out of the box. Control exactly what renders where.',
+      icon: <Monitor className="w-8 h-8" />,
+      title: 'Devices',
+      description: 'Explore GPU hardware reports and capabilities',
+      href: '/devices',
     },
     {
-      icon: <RouteIcon className="w-12 h-12 text-cyan-400" />,
-      title: 'API Routes',
-      description:
-        'Build type-safe API endpoints alongside your application. No separate backend needed.',
+      icon: <Cpu className="w-8 h-8" />,
+      title: 'Features',
+      description: 'Check feature support across different GPUs',
+      href: '/features',
     },
     {
-      icon: <Shield className="w-12 h-12 text-cyan-400" />,
-      title: 'Strongly Typed Everything',
-      description:
-        'End-to-end type safety from server to client. Catch errors before they reach production.',
-    },
-    {
-      icon: <Waves className="w-12 h-12 text-cyan-400" />,
-      title: 'Full Streaming Support',
-      description:
-        'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
-    },
-    {
-      icon: <Sparkles className="w-12 h-12 text-cyan-400" />,
-      title: 'Next Generation Ready',
-      description:
-        'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
+      icon: <Database className="w-8 h-8" />,
+      title: 'Properties',
+      description: 'Compare device properties and limits',
+      href: '/properties',
     },
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      <section className="relative py-20 px-6 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10"></div>
-        <div className="relative max-w-5xl mx-auto">
-          <div className="flex items-center justify-center gap-6 mb-6">
-            <img
-              src="/tanstack-circle-logo.png"
-              alt="TanStack Logo"
-              className="w-24 h-24 md:w-32 md:h-32"
-            />
-            <h1 className="text-6xl md:text-7xl font-black text-white [letter-spacing:-0.08em]">
-              <span className="text-gray-300">TANSTACK</span>{' '}
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                START
-              </span>
-            </h1>
-          </div>
-          <p className="text-2xl md:text-3xl text-gray-300 mb-4 font-light">
-            The framework for next generation AI applications
+    <div className="min-h-screen bg-[#181a1b]">
+      {/* Hero Section */}
+      <section className="bg-[#111111] text-white py-16 px-4">
+        <div className="max-w-5xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            GPU<span className="text-red-500">info</span>
+          </h1>
+          <p className="text-xl text-[#787571] mb-8 max-w-2xl mx-auto">
+            A comprehensive database of GPU hardware capabilities, extensions, and features across Vulkan, OpenGL, and OpenCL.
           </p>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
-            Full-stack framework powered by TanStack Router for React and Solid.
-            Build modern applications with server functions, streaming, and type
-            safety.
-          </p>
-          <div className="flex flex-col items-center gap-4">
-            <a
-              href="https://tanstack.com/start"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-cyan-500/50"
-            >
-              Documentation
-            </a>
-            <p className="text-gray-400 text-sm mt-2">
-              Begin your TanStack Start journey by editing{' '}
-              <code className="px-2 py-1 bg-slate-700 rounded text-cyan-400">
-                /src/routes/index.tsx
-              </code>
-            </p>
+          <Link
+            to="/extensions"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-red-500 hover:bg-red-600 rounded-lg font-semibold transition-colors"
+          >
+            Browse Extensions
+            <ChevronRight size={20} />
+          </Link>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="bg-[#222222] border-b border-[#292c2e] py-8 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="text-3xl font-bold text-white">{stat.value}</div>
+                <div className="text-[#787571] text-sm">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10"
-            >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold text-white mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+      {/* Quick Links */}
+      <section className="py-12 px-4">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl font-bold text-white mb-6">Explore the Database</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {quickLinks.map((link) => (
+              <Link
+                key={link.title}
+                to={link.href}
+                className="flex items-start gap-4 p-6 bg-[#222222] rounded-lg border border-[#292c2e] hover:border-[#343434] hover:bg-[#343434] transition-all group"
+              >
+                <div className="text-white group-hover:text-red-500 transition-colors">
+                  {link.icon}
+                </div>
+                <div>
+                  <h3 className="font-semibold text-white group-hover:text-red-500 transition-colors">
+                    {link.title}
+                  </h3>
+                  <p className="text-[#787571] text-sm mt-1">{link.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* API Section */}
+      <section className="py-12 px-4 bg-[#222222] border-t border-[#292c2e]">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl font-bold text-white mb-6">Supported APIs</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="p-6 border border-[#292c2e] rounded-lg bg-[#181a1b]">
+              <div className="flex items-center gap-3 mb-3">
+                <img src="/vulkan-logo.svg" alt="Vulkan" className="w-8 h-8" />
+                <h3 className="font-semibold text-lg text-white">Vulkan</h3>
+              </div>
+              <p className="text-[#787571] text-sm">
+                Modern, low-level graphics and compute API with extensive hardware support data.
+              </p>
+              <div className="mt-3 text-red-500 font-medium text-sm">Active</div>
+            </div>
+            <div className="p-6 border border-[#292c2e] rounded-lg bg-[#181a1b] opacity-60">
+              <div className="flex items-center gap-3 mb-3">
+                <img src="/opengl-logo.svg" alt="OpenGL" className="w-8 h-8" />
+                <h3 className="font-semibold text-lg text-white">OpenGL</h3>
+              </div>
+              <p className="text-[#787571] text-sm">
+                Cross-platform graphics API with broad legacy and modern device coverage.
+              </p>
+              <div className="mt-3 text-[#787571] font-medium text-sm">Coming Soon</div>
+            </div>
+            <div className="p-6 border border-[#292c2e] rounded-lg bg-[#181a1b] opacity-60">
+              <div className="flex items-center gap-3 mb-3">
+                <img src="/opencl-logo.svg" alt="OpenCL" className="w-8 h-8" />
+                <h3 className="font-semibold text-lg text-white">OpenCL</h3>
+              </div>
+              <p className="text-[#787571] text-sm">
+                Open standard for parallel programming across heterogeneous platforms.
+              </p>
+              <div className="mt-3 text-[#787571] font-medium text-sm">Coming Soon</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#111111] text-[#787571] py-8 px-4 border-t border-[#292c2e]">
+        <div className="max-w-5xl mx-auto text-center text-sm">
+          <p>
+            GPUinfo.net - A modern GPU hardware database
+          </p>
+          <p className="mt-2">
+            Inspired by <a href="https://gpuinfo.org" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:underline">gpuinfo.org</a>
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }

@@ -2,6 +2,7 @@ import {
   HeadContent,
   Scripts,
   createRootRouteWithContext,
+  Link,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
@@ -34,7 +35,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'GPUinfo - Vulkan Hardware Database',
       },
     ],
     links: [
@@ -46,7 +47,25 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
   }),
 
   shellComponent: RootDocument,
+  notFoundComponent: NotFound,
 })
+
+function NotFound() {
+  return (
+    <div className="min-h-screen bg-[#181a1b] flex items-center justify-center px-4">
+      <div className="text-center">
+        <h1 className="text-6xl font-bold text-white mb-4">404</h1>
+        <p className="text-xl text-[#787571] mb-8">Page not found</p>
+        <Link
+          to="/"
+          className="inline-block px-6 py-3 bg-[#222222] text-white rounded-lg border border-[#292c2e] hover:bg-[#343434] transition-colors"
+        >
+          Go back home
+        </Link>
+      </div>
+    </div>
+  )
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
