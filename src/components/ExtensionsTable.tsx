@@ -73,27 +73,21 @@ export function ExtensionsTable({ data }: ExtensionsTableProps) {
       }),
       columnHelper.accessor('hasFeatures', {
         header: 'Features',
-        cell: (info) => (
-          <div className="flex justify-center items-center h-5 w-5 mx-auto">
-            {info.getValue() ? (
-              <Check className="text-green-500 shrink-0" size={18} />
-            ) : (
-              <X className="text-[#343434] shrink-0" size={18} />
-            )}
-          </div>
-        ),
+        cell: (info) =>
+          info.getValue() ? (
+            <Check className="text-green-500 mx-auto" size={18} />
+          ) : (
+            <X className="text-[#343434] mx-auto" size={18} />
+          ),
       }),
       columnHelper.accessor('hasProperties', {
         header: 'Properties',
-        cell: (info) => (
-          <div className="flex justify-center items-center h-5 w-5 mx-auto">
-            {info.getValue() ? (
-              <Check className="text-green-500 shrink-0" size={18} />
-            ) : (
-              <X className="text-[#343434] shrink-0" size={18} />
-            )}
-          </div>
-        ),
+        cell: (info) =>
+          info.getValue() ? (
+            <Check className="text-green-500 mx-auto" size={18} />
+          ) : (
+            <X className="text-[#343434] mx-auto" size={18} />
+          ),
       }),
     ],
     []
@@ -114,7 +108,7 @@ export function ExtensionsTable({ data }: ExtensionsTableProps) {
   })
 
   return (
-    <div className="bg-[#222222] rounded-lg border border-[#292c2e] overflow-hidden">
+    <div className="bg-[#222222] rounded-lg border border-[#292c2e] relative z-0 isolate transform-gpu before:absolute before:inset-0 before:-z-10 before:bg-inherit before:rounded-[inherit]">
       {/* Search bar */}
       <div className="p-4 border-b border-[#292c2e]">
         <div className="relative max-w-md">
@@ -159,9 +153,9 @@ export function ExtensionsTable({ data }: ExtensionsTableProps) {
               </tr>
             ))}
           </thead>
-          <tbody className="bg-[#222222]">
+          <tbody className="divide-y divide-[#292c2e]">
             {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className="hover:bg-[#343434] transition-colors border-b border-[#292c2e] last:border-b-0">
+              <tr key={row.id} className="hover:bg-[#343434] transition-colors">
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} className="px-4 py-3 text-white">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
